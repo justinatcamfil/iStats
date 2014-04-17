@@ -73,6 +73,7 @@ module IStats
           istats all                               Print all stats
           istats cpu                               Print all CPU stats
           istats cpu [temp | temperature]          Print CPU temperature
+                     [f | fahrenheit]              Report Fahrenheit not Celsius 
           istats fan                               Print all fan stats
           istats fan [speed]                       Print fan speed
 

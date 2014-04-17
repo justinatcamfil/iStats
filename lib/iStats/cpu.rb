@@ -22,25 +22,37 @@ module IStats
       end
 
       def cpu_temperature
+        mode = "F"
         t = get_cpu_temp
-        message = "CPU temp: #{t}#{Symbols.degree}C  "
         list = [0, 30, 55, 80, 100, 130]
-        sparkline = Sparkr.sparkline(list) do |tick, count, index|
-          if index.between?(0, 5) and t > 90
-            flash_red(tick)
-          elsif index.between?(0, 1)
-            green(tick)
-          elsif index.between?(2, 3) and t > 50
-            light_yellow(tick)
-          elsif index == 4 and t > 68
-            yellow(tick)
-          elsif index == 5 and t > 80
-            red(tick)
-          else
-            tick
-          end
+
+        if mode == "F"
+          t = fahrenheit t
+          list.map { |i| fahrenheit(i) }
         end
-        puts message + sparkline
+
+        message = "CPU temp: #{t}#{Symbols.degree}#{mode}  "
+        #sparkline = Sparkr.sparkline(list) do |tick, count, index|
+          #if index.between?(0, 5) and t > ( list[5]*0.9 )
+            #flash_red(tick)
+          #elsif index.between?(0, 1)
+            #green(tick)
+          #elsif index.between?(2, 3) and t > ( list[3]*0.9 )
+            #light_yellow(tick)
+          #elsif index == 4 and t > ( list[4]*0.9 )
+            #yellow(tick)
+          #elsif index == 5 and t > ( list[5]*0.9 )
+            #red(tick)
+          #else
+            #tick
+          #end
+        #end
+        puts message # + sparkline
+      end
+
+      def fahrenheit(c)
+        t = c*9/5+32
+        t.round(2)
       end
     end
   end

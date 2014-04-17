@@ -33,6 +33,7 @@ Ruby: 1.9.3, 2.0.0, 2.1.1<br>
   istats all                               Print all stats
   istats cpu                               Print all CPU stats
   istats cpu [temp | temperature]          Print CPU temperature
+             [f | fahrenheit]              Report Fahrenheit not Celsius
   istats fan                               Print all fan stats
   istats fan [speed]                       Print fan speed
 
